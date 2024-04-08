@@ -56,6 +56,6 @@ To get started with AstraCode on Windows, follow these steps:
 
 ## Additional Information
 
-AstraCode currently supports the Windows platform, aiming to provide a seamless coding experience for users on this operating system. With its integration of the Monaco editor and support for dark/light themes, font size customization, an integrated terminal, and local storage support, AstraCode offers a comprehensive solution for coding projects of varying scales and complexities. 
+AstraCode currently supports the Windows platform, aiming to provide a seamless coding experience for users on this operating system. With its integration of the Monaco editor and support for dark/light themes, font size customization, an integrated terminal, and local storage support, AstraCode offers a comprehensive solution for coding.
 
 Feel free to explore the [AstraCode repository](https://github.com/Bhavye2003Developer/AstraCode) for more information and updates. Contributions and feedback are welcome!
