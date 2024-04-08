@@ -2,6 +2,8 @@
 
 AstraCode is a lightweight Integrated Development Environment (IDE) designed to streamline coding workflows for Python, Java, and C++ developers on the Windows platform. It provides a versatile and intuitive platform with a range of features to enhance coding productivity.
 
+https://github.com/Bhavye2003Developer/AstraCode/assets/110657263/8541c30b-a8f3-4bbe-bda6-5162751b03a6
+
 ## Features
 
 - **Language Support**: AstraCode supports three popular programming languages: Python, Java, and C++.
@@ -42,12 +44,12 @@ To get started with AstraCode on Windows, follow these steps:
     - For backend:
         ```bash
         cd backend
-        nodemon index.js
+        npm start
         ```
     - For frontend:
         ```bash
         cd frontend
-        npx parcel index.html
+        npm start
         ```
 
 5. Open your web browser and navigate to `localhost:1234` to access AstraCode.
