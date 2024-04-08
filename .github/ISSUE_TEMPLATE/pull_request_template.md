@@ -29,4 +29,4 @@ This pull request introduces updates to the README.md file for the AstraCode IDE
 The README.md file serves as the primary source of information for AstraCode IDE. These updates aim to provide comprehensive details about the project, making it easier for users to understand its features and functionalities.
 
 ## Reviewers
-@Bhavye2003Developer
+**@Bhavye2003Developer**
