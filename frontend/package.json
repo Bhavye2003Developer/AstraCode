@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "parcel index.html",
     "test": "jest"
   },
   "author": "Bhavye Jain",
