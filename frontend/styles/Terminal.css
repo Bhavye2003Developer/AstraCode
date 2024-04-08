@@ -1,0 +1,56 @@
+/* External CSS for terminal component */
+
+.terminal {
+  display: flex; /* Use flexbox */
+  flex-direction: column; /* Column layout for overall structure */
+  background-color: #000;
+  color: #fff;
+  font-family: monospace;
+  padding: 20px;
+  border-radius: 5px;
+  height: 100%;
+}
+
+.terminal h1 {
+  font-size: 16px;
+}
+
+.terminal .prompt {
+  color: #0f0; /* color for the prompt */
+  display: inline-block; /* Display prompt inline */
+  width: auto; /* Allow prompt to grow based on content */
+  margin-right: 5px; /* Add some spacing between prompt and input */
+  overflow-x: visible;
+}
+
+.prompt{
+  margin: 0px;
+}
+
+.terminal input[type="text"] {
+  background-color: transparent;
+  color: #fff;
+  border: none;
+  border-bottom: 1px solid black;
+  outline: none;
+  padding: 5px;
+  font-family: monospace;
+  flex: 1; /* Take up remaining space */
+}
+
+.terminal input[type="text"]::placeholder {
+  color: #999;
+}
+
+.terminal input[type="text"]:focus {
+  border-bottom: 1px solid black;
+}
+
+.terminal pre {
+  white-space: pre-wrap;
+  margin: 0px;
+}
+
+#command {
+  color: rgb(93, 93, 218);
+}

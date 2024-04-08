@@ -1,0 +1,327 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Beautified CSS for .code-header */
+.code-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 25px; /* Adjusted padding for better spacing */
+  background-color: #2d2d2d; /* Dark background color */
+  color: #fff;
+  margin-bottom: 20px;
+  width: 50%;
+  animation: slideInDown 1s forwards;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Increased box shadow for depth */
+  border-radius: 8px; /* Adding border-radius for a softer look */
+}
+
+.code-header h1 {
+  margin: 0;
+  font-size: 32px; /* Increased font size for better visibility */
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Adding text shadow for better contrast */
+}
+
+.run-btn {
+  padding: 12px 24px; /* Increased padding for a larger hit area */
+  background-color: #007bff; /* Updated button color */
+  color: #fff;
+  border: 2px solid #007bff; /* Adding border for better visibility */
+  border-radius: 20px; /* Increasing border-radius for a rounded button */
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Added color transition */
+}
+
+.run-btn:hover {
+  background-color: #0056b3; /* Darker hover color */
+  border-color: #0056b3; /* Darker hover border color */
+}
+
+/* Beautified CSS for select element */
+#lang {
+  padding: 10px 20px; /* Adjusted padding for better spacing */
+  font-size: 16px; /* Increased font size for better readability */
+  background-color: #fff; /* White background color */
+  color: #333; /* Dark text color */
+  border: 2px solid #ccc; /* Border color */
+  border-radius: 8px; /* Rounded corners */
+  outline: none; /* Removed default outline */
+  transition: border-color 0.3s ease; /* Added transition for smoother interaction */
+}
+
+#lang:hover,
+#lang:focus {
+  border-color: #007bff; /* Highlight border color on hover and focus */
+}
+
+.code-editor-container {
+  display: flex;
+  width: 100%;
+  height: calc(100vh - 120px); /* Adjust 100px to match your header's height */
+}
+
+.code-writer,
+.code-output {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  animation: slideInLeft 1s forwards;
+}
+
+.code-writer textarea {
+  flex: 1;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 16px;
+  height: 100%;
+  resize: none; /* Prevent resizing of textarea */
+}
+
+.editor-container {
+  flex: 1;
+}
+
+.tools {
+  align-self: flex-start; /* Align to the top */
+  border: 1px solid black;
+  width: 100%;
+  margin: 1px;
+  padding: 2px;
+  display: flex;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 100%px;
+  height: 20px;
+  margin-top: 15px;
+  margin-right: 10px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  background-color: rgb(56, 55, 55);
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 20px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #2196f3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(20px);
+  -ms-transform: translateX(20px);
+  transform: translateX(15px);
+}
+
+.vl {
+  border-left: 2px solid rgb(0, 0, 0);
+  height: 100%;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.font-setter {
+  width: 30px;
+  height: 20px;
+  margin-top: 8px;
+  text-align: center;
+}
+
+.terminal-img {
+  height: 40px;
+  cursor: pointer;
+}
+
+/* .terminal-img:hover{
+} */
+
+.output {
+  width: 100%;
+  background-color: #f8f9fa;
+  padding: 20px;
+  padding-top: 0px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  animation: slideInRight 1s forwards;
+  overflow-x: auto; /* Enable horizontal scrolling */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.output-text {
+  white-space: pre-wrap;
+  overflow-wrap: break-word; /* Wrap long words */
+}
+
+.output-heading {
+  color: #333;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.output-text {
+  font-size: 16px;
+  color: #000;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+}
+
+.executing-animation {
+  display: inline-block;
+  animation: slideInUp 1s forwards;
+}
+
+.dot-animation {
+  display: inline-block;
+  position: relative;
+}
+
+.dot {
+  display: inline-block;
+  width: 4px; /* Adjust thickness as needed */
+  height: 4px; /* Adjust thickness as needed */
+  border-radius: 50%;
+  background-color: #000;
+  opacity: 0;
+  margin-right: 2px;
+}
+
+.dot1 {
+  animation: appear 1.5s infinite;
+}
+
+.dot2 {
+  animation: appear 1.5s infinite 0.5s;
+}
+
+.dot3 {
+  animation: appear 1.5s infinite 1s;
+}
+
+@keyframes slideInDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes appear {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.heading {
+  font-family: "Arial", sans-serif; /* You can adjust the font family */
+  font-size: 36px; /* You can adjust the font size */
+  color: #007bff; /* You can adjust the color */
+  text-align: center; /* You can adjust the text alignment */
+  text-transform: uppercase; /* Convert text to uppercase */
+  letter-spacing: 2px; /* Adjust letter spacing */
+  margin-bottom: 20px; /* You can adjust the margin */
+  /* Add any additional styles as needed */
+}
+
+.terminal-container {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 30%; /* Set height to 30% of the screen */
+  overflow-y: scroll;
+  background-color: black;
+}
