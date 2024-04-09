@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import socket from "../utils/socket";
-import "../../styles/Terminal.css";
 
 const Terminal = () => {
   const [command, setCommand] = useState("");
@@ -46,7 +45,7 @@ const Terminal = () => {
   }, [socket, allCommands]);
 
   return (
-    <div className="terminal">
+    <div className="flex flex-col bg-black text-white font-mono p-5 rounded-md h-full">
       <h1>
         terminal:
         {
@@ -60,19 +59,28 @@ const Terminal = () => {
         }
       </h1>
       {allCommands.map((u_c_o) => (
-        <pre>
-          <pre>
-            {`user@${socket.id}$`} <span id="command">{u_c_o.command}</span>
+        <pre className="whitespace-pre-wrap m-0">
+          <pre className="whitespace-pre-wrap m-0">
+            {`user@${socket.id}$`}{" "}
+            <span id="command" className="text-blue-500">
+              {u_c_o.command}
+            </span>
           </pre>
-          <pre> {u_c_o.output}</pre>
+          <pre className="whitespace-pre-wrap m-0"> {u_c_o.output}</pre>
           <br />
         </pre>
       ))}
       <br />
-      <div className="prompt-container">
-        <span className="prompt">{`user@${socket.id}`}$</span>
+      <div>
+        <span
+          // className="prompt"
+          className="text-green-500 inline-block mr-1 whitespace-nowrap"
+        >
+          {`user@${socket.id}`}$
+        </span>
         <input
           type="text"
+          className="bg-transparent text-white border-none border-b border-black outline-none p-1 font-mono flex-1 focus:border-black"
           placeholder="command"
           value={command}
           onChange={(e) => {

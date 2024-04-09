@@ -17,11 +17,14 @@ const Home = () => {
   userLocalStorage(userCode, langId, setUserCode, setLangId);
 
   return (
-    <div className="home">
-      <div className="code-header">
-        <h1 className="heading">AstraCode</h1>
+    <div className="flex flex-col items-center">
+      <div className="flex items-center justify-between px-[15px] py-[20px] bg-dark-black text-white mb-5 w-1/2 animate-slideDown shadow-md rounded-xl mt-2">
+        <h1 className="font-custom-sans text-4xl tracking-wide text-[#007bff] text-center">
+          ASTRACODE
+        </h1>
 
         <select
+          className="p-2 pl-4 pr-10 rounded-lg outline-none transition border-2 border-gray-300 text-base bg-white text-gray-700 hover:border-blue-500 focus:border-blue-500 w-min"
           name="lang"
           id="lang"
           onChange={(e) => {
@@ -31,12 +34,14 @@ const Home = () => {
           value={langId}
         >
           {SUPPORTED_LANGAUGES.map((lang, id) => (
-            <option value={id}>{lang}</option>
+            <option key={id} value={id}>
+              {lang}
+            </option>
           ))}
         </select>
 
         <button
-          className="run-btn"
+          className="px-6 py-3 bg-blue-500 text-white border-2 border-blue-500 rounded-full cursor-pointer transition-colors duration-300 ease-in-out hover:bg-blue-700 hover:border-blue-700 hover:text-white"
           onClick={(e) => {
             const buttonText = e.target.innerText;
             if (buttonText == "CANCEL") window.stop();
@@ -55,7 +60,7 @@ const Home = () => {
           {output === null ? "CANCEL" : "RUN"}
         </button>
       </div>
-      <div className="code-editor-container">
+      <div className="flex w-full h-[690px]">
         <CodeWriter
           userCode={userCode}
           setUserCode={setUserCode}
@@ -67,7 +72,7 @@ const Home = () => {
       </div>
 
       {openTerminal ? (
-        <div className="terminal-container">
+        <div className="fixed bottom-0 w-full h-[300px] overflow-y-auto bg-black">
           <Terminal />
         </div>
       ) : null}

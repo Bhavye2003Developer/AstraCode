@@ -1,23 +1,20 @@
 const CodeOutput = ({ output }) => {
   return (
-    <div className="output">
-      <h3 className="output-heading">OUTPUT</h3>
+    <div className="w-full bg-[#f8f9fa] p-5 border border-[#ccc] rounded-md animate-slideRight overflow-y-auto overflow-x-auto">
+      <h3 className="text-[#333] text-center mb-[10px]">OUTPUT</h3>
       <hr />
-      <div className="output-content">
+      <div>
         {output === null ? (
-          <div className="executing-animation">
-            <div className="dot-animation">
+          <div className="executing-animation animate-slideUp">
+            <div className="dot-animation text-xl">
               Executing
-              <span className="dot dot1"></span>
-              <span className="dot dot2"></span>
-              <span className="dot dot3"></span>
+              <span class="animate-appear">.</span>
+              <span class="animate-appear">.</span>
+              <span class="animate-appear">.</span>
             </div>
           </div>
         ) : (
-          <pre
-            className="output-text"
-            style={{ whiteSpace: "pre-wrap", overflow: "hidden" }}
-          >
+          <pre className="whitespace-pre-wrap break-words text-[20px] p-2 rounded-md overflow-x-hidden bg-[#f8f9fa]">
             {output}
           </pre>
         )}

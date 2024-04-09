@@ -1,32 +1,43 @@
 import { useState } from "react";
-import "../../styles/DarkLightToggleButton.css";
 
 const DarkLightToggleButton = ({ setStyle, style }) => {
-  const [sunVisible, setSunVisible] = useState(false); // State to manage visibility of sun
-  const [moonVisible, setMoonVisible] = useState(true); // State to manage visibility of moon
+  const [darkMode, setDarkMode] = useState(true);
 
-  // Toggle function to handle button click
-  const toggleVisibility = () => {
-    setSunVisible(!sunVisible);
-    setMoonVisible(!moonVisible);
-    setStyle({ ...style, darkTheme: !moonVisible });
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+    setStyle({ ...style, darkTheme: !darkMode });
   };
 
   return (
     <button
-      className="container"
-      aria-label="Toggle color mode"
-      title="Toggle color mode"
-      onClick={() => {
-        toggleVisibility();
-      }} // Attach onClick event handler
+      className={`rounded-full p-2 ml-5 text-black focus:outline-none transition-colors duration-300`}
+      onClick={toggleDarkMode}
     >
-      <div className={`sun ${sunVisible ? "visible" : ""}`}></div>{" "}
-      {/* Add sun visibility class dynamically */}
-      <div className={`moon ${moonVisible ? "visible" : ""}`}>
-        <div className="star"></div>
-        <div className="star small"></div>
-      </div>
+      {darkMode ? (
+        <svg
+          className="w-8 h-8 fill-current animate-moon-to-sun"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+        >
+          <path
+            fillRule="evenodd"
+            d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+            clipRule="evenodd"
+          />
+        </svg>
+      ) : (
+        <svg
+          className="w-8 h-8 fill-current animate-sun-to-moon"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+        >
+          <path
+            fillRule="evenodd"
+            d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+            clipRule="evenodd"
+          />
+        </svg>
+      )}
     </button>
   );
 };
