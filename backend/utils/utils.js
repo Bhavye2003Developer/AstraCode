@@ -1,48 +1,58 @@
 const fs = require("fs");
 var child_process = require("child_process");
 
-const PYTHON_CODE_FILE_PATH = "code/python";
-const CPP_CODE_FILE_PATH = "code/cppLang";
-const JAVA_CODE_FILE_PATH = "code/java";
-
-const writeCode = (code, langId) => {
-  if (langId > 3 || langId < 0) return;
-  if (langId === 0)
-    fs.writeFileSync(PYTHON_CODE_FILE_PATH + "/user1.py", code, {
-      encoding: "utf-8",
-    });
-  if (langId === 1)
-    fs.writeFileSync(CPP_CODE_FILE_PATH + "/user1.cpp", code, {
-      encoding: "utf-8",
-    });
-  if (langId === 2)
-    fs.writeFileSync(JAVA_CODE_FILE_PATH + "/user1.java", code, {
-      encoding: "utf-8",
-    });
+const spin_container = () => {
+  try {
+    const spin_up_command = "docker run -d -t user-env"; // spining up new container
+    return child_process.execSync(spin_up_command).toString();
+  } catch (err) {
+    return err;
+  }
 };
 
-function executeCode(code, langId) {
-  writeCode(code, langId);
+const writeCodeToContainer = (code, langId, containerId) => {
+  fs.writeFileSync("code.txt", code, { encoding: "utf-8" });
+
+  const DOCKER_USER_FILE_PATH =
+    langId === 0
+      ? "/home/user/python/user1.py"
+      : langId === 1
+      ? "/home/user/cppLang/user1.cpp"
+      : langId === 2
+      ? "/home/user/java/user1.java"
+      : "";
+
+  if (langId > 3 || langId < 0) return;
+  child_process.execSync(
+    `docker cp code.txt ${containerId}:${DOCKER_USER_FILE_PATH}`
+  );
+};
+
+function executeCode(code, langId, containerId) {
+  const formatedContainerId = containerId.slice(0, 12);
+  writeCodeToContainer(code, langId, formatedContainerId);
   try {
     if (langId === 0) {
       const output = child_process
-        .execSync(`python ./${PYTHON_CODE_FILE_PATH}/user1.py`)
+        .execSync(
+          `docker exec -i ${formatedContainerId} python3 python/user1.py`
+        )
         .toString();
       return output;
     }
     if (langId === 1) {
+      // compiling c++ program
       child_process.execSync(
-        `g++ ./${CPP_CODE_FILE_PATH}/user1.cpp -o user1 & mv user1.* ./${CPP_CODE_FILE_PATH}`
+        `docker exec -i ${formatedContainerId} g++ cppLang/user1.cpp -o cppLang/a.out`
       );
       const output = child_process
-        .execFileSync(`${CPP_CODE_FILE_PATH}/user1.exe`)
+        .execSync(`docker exec -i ${formatedContainerId} ./cppLang/a.out`)
         .toString();
       return output;
     }
     if (langId === 2) {
-      child_process.execSync(`javac ./${JAVA_CODE_FILE_PATH}/user1.java`);
       const output = child_process
-        .execSync(`java ${JAVA_CODE_FILE_PATH}/User1.java`)
+        .execSync(`docker exec -i ${formatedContainerId} java java/user1.java`)
         .toString();
       return output;
     }
@@ -62,4 +72,4 @@ const executeCommand = (command) => {
   }
 };
 
-module.exports = { executeCode, executeCommand };
+module.exports = { executeCode, executeCommand, spin_container };

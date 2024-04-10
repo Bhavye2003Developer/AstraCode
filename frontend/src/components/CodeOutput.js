@@ -8,9 +8,9 @@ const CodeOutput = ({ output }) => {
           <div className="executing-animation animate-slideUp">
             <div className="dot-animation text-xl">
               Executing
-              <span class="animate-appear">.</span>
-              <span class="animate-appear">.</span>
-              <span class="animate-appear">.</span>
+              <span className="animate-appear">.</span>
+              <span className="animate-appear">.</span>
+              <span className="animate-appear">.</span>
             </div>
           </div>
         ) : (

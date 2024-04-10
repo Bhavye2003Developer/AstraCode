@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import CodeWriter from "./CodeWriter";
-import getCodeOutput from "../utils/executeCode";
+import { getCodeOutput, getContainerId } from "../utils/executeCode";
 import CodeOutput from "./CodeOutput";
 import userLocalStorage from "../utils/useLocalStorage";
 import { SUPPORTED_LANGAUGES } from "../utils/constants";
@@ -10,11 +10,25 @@ const Home = () => {
   const [output, setOutput] = useState("");
   const [userCode, setUserCode] = useState(null);
   const [openTerminal, setOpenTerminal] = useState(false);
+  const [containerId, setContainerId] = useState(null);
 
   // 0 -> Python, 1 -> c++, 2 -> Java
   const [langId, setLangId] = useState(0);
 
   userLocalStorage(userCode, langId, setUserCode, setLangId);
+
+  useEffect(() => {
+    getContainerId()
+      .then((res) => {
+        if (!res.err) setContainerId(res.containerId);
+        else {
+          console.log(res.message);
+        }
+      })
+      .catch((err) => {
+        console.log("error occured");
+      });
+  }, []);
 
   return (
     <div className="flex flex-col items-center">
@@ -46,7 +60,7 @@ const Home = () => {
             const buttonText = e.target.innerText;
             if (buttonText == "CANCEL") window.stop();
             setOutput(null);
-            const response = getCodeOutput(userCode, langId);
+            const response = getCodeOutput(userCode, langId, containerId);
             response
               .then((res) => {
                 setOutput(res.output);

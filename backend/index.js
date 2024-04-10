@@ -10,8 +10,9 @@ const io = new Server(server);
 
 // Parse JSON bodies (as sent by API clients)
 app.use(express.json());
-
 const port = 3000;
+
+const users = [];
 
 io.on("connection", (socket) => {
   console.log(`${socket.id} id - user connected`);
@@ -36,12 +37,25 @@ app.post("/", cors(), (req, res) => {
   console.log("/");
   const code = req.body.code;
   const langId = Number(req.body.langId);
-  if (!code) {
-    res.send({ output: "No output" });
+  const containerId = req.body.containerId;
+  if (!containerId) return res.send({ output: "no containerId passed" });
+
+  if (!code) return res.send({ output: "No output" });
+
+  console.log("passed: ", containerId);
+  const output = utils.executeCode(code, langId, containerId);
+  return res.send({ output });
+});
+
+// app.options("/", cors());
+app.get("/", cors(), (req, res) => {
+  const containerId = utils.spin_container();
+  if (containerId.message) {
+    res.send({ message: containerId.message, err: true });
     return;
   }
-  const output = utils.executeCode(code, langId);
-  res.send({ output });
+  console.log(containerId);
+  return res.send({ containerId, err: false });
 });
 
 server.listen(port, () => {

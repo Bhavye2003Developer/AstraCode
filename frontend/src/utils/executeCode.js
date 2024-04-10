@@ -1,8 +1,8 @@
 import { SERVER_API } from "./constants";
 
-const getCodeOutput = async (code, langId) => {
+const getCodeOutput = async (code, langId, containerId) => {
   console.log(langId);
-  const body = JSON.stringify({ code, langId });
+  const body = JSON.stringify({ code, langId, containerId });
   try {
     const response = await fetch(SERVER_API, {
       method: "POST",
@@ -18,4 +18,14 @@ const getCodeOutput = async (code, langId) => {
   }
 };
 
-export default getCodeOutput;
+const getContainerId = async () => {
+  try {
+    const response = await fetch(SERVER_API, { method: "GET" });
+    const containerId = response.json();
+    return containerId;
+  } catch (err) {
+    return null;
+  }
+};
+
+export { getCodeOutput, getContainerId };
