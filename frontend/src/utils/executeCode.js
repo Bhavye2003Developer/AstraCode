@@ -21,7 +21,14 @@ const getCodeOutput = async (code, langId, containerId) => {
 const getContainerId = async () => {
   try {
     const response = await fetch(SERVER_API, { method: "GET" });
-    const containerId = response.json();
+    const containerId = await response.json();
+
+    // const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    // userInfo.containerInfo = {
+    //   containerId: containerId.containerId,
+    //   expiry: new Date().toString(),
+    // };
+
     return containerId;
   } catch (err) {
     return null;

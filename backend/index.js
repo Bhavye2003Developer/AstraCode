@@ -47,7 +47,6 @@ app.post("/", cors(), (req, res) => {
   return res.send({ output });
 });
 
-// app.options("/", cors());
 app.get("/", cors(), (req, res) => {
   const containerId = utils.spin_container();
   if (containerId.message) {

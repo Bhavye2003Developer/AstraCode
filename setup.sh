@@ -1,7 +1,10 @@
 #!/bin/bash
 
-cd backend
+cd frontend
 npm install
 
-cd ../frontend
+cd ../backend
 npm install
+
+#docker client should be installed
+docker build -t user-env .

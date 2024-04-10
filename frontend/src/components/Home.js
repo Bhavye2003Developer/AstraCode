@@ -20,6 +20,7 @@ const Home = () => {
   useEffect(() => {
     getContainerId()
       .then((res) => {
+        console.log("res", res);
         if (!res.err) setContainerId(res.containerId);
         else {
           console.log(res.message);
@@ -30,7 +31,11 @@ const Home = () => {
       });
   }, []);
 
-  return (
+  useEffect(() => {
+    console.log(containerId);
+  }, [containerId]);
+
+  return containerId ? (
     <div className="flex flex-col items-center">
       <div className="flex items-center justify-between px-[15px] py-[20px] bg-dark-black text-white mb-5 w-1/2 animate-slideDown shadow-md rounded-xl mt-2">
         <h1 className="font-custom-sans text-4xl tracking-wide text-[#007bff] text-center">
@@ -91,6 +96,8 @@ const Home = () => {
         </div>
       ) : null}
     </div>
+  ) : (
+    "Loading..."
   );
 };
 export default Home;
