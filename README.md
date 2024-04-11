@@ -2,7 +2,7 @@
 
 AstraCode is a lightweight Integrated Development Environment (IDE) designed to streamline coding workflows for Python, Java, and C++ developers on the Windows platform. It provides a versatile and intuitive platform with a range of features to enhance coding productivity.
 
-https://github.com/Bhavye2003Developer/AstraCode/assets/110657263/8541c30b-a8f3-4bbe-bda6-5162751b03a6
+![AstraCode IDE](https://github.com/Bhavye2003Developer/AstraCode/assets/110657263/8541c30b-a8f3-4bbe-bda6-5162751b03a6)
 
 ## Features
 
@@ -20,6 +20,7 @@ AstraCode leverages the following technologies:
 - **React**: A JavaScript library for building user interfaces, enabling AstraCode to provide a dynamic and responsive user experience.
 - **Node.js**: A JavaScript runtime built on Chrome's V8 JavaScript engine, used for building scalable network applications. Node.js powers the backend of AstraCode, facilitating server-side operations.
 - **Parcel**: A fast, zero configuration web application bundler, and build tool, to optimize the development and build process.
+- **Docker**: Used to create separate user containers to isolate user code, ensuring security and reproducibility.
 
 ## Installation
 
