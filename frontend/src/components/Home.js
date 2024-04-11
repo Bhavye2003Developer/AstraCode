@@ -5,23 +5,22 @@ import CodeOutput from "./CodeOutput";
 import userLocalStorage from "../utils/useLocalStorage";
 import { SUPPORTED_LANGAUGES } from "../utils/constants";
 import Terminal from "./Terminal";
+import Loading from "./Loading";
 
 const Home = () => {
   const [output, setOutput] = useState("");
   const [userCode, setUserCode] = useState(null);
   const [openTerminal, setOpenTerminal] = useState(false);
-  const [containerId, setContainerId] = useState(null);
+  const [containerInfo, setContainerInfo] = useState(null);
 
   // 0 -> Python, 1 -> c++, 2 -> Java
   const [langId, setLangId] = useState(0);
-
-  userLocalStorage(userCode, langId, setUserCode, setLangId);
 
   useEffect(() => {
     getContainerId()
       .then((res) => {
         console.log("res", res);
-        if (!res.err) setContainerId(res.containerId);
+        if (!res.err) setContainerInfo(res);
         else {
           console.log(res.message);
         }
@@ -31,11 +30,9 @@ const Home = () => {
       });
   }, []);
 
-  useEffect(() => {
-    console.log(containerId);
-  }, [containerId]);
+  userLocalStorage(userCode, langId, setUserCode, setLangId);
 
-  return containerId ? (
+  return containerInfo?.containerId ? (
     <div className="flex flex-col items-center">
       <div className="flex items-center justify-between px-[15px] py-[20px] bg-dark-black text-white mb-5 w-1/2 animate-slideDown shadow-md rounded-xl mt-2">
         <h1 className="font-custom-sans text-4xl tracking-wide text-[#007bff] text-center">
@@ -65,7 +62,11 @@ const Home = () => {
             const buttonText = e.target.innerText;
             if (buttonText == "CANCEL") window.stop();
             setOutput(null);
-            const response = getCodeOutput(userCode, langId, containerId);
+            const response = getCodeOutput(
+              userCode,
+              langId,
+              containerInfo.containerId
+            );
             response
               .then((res) => {
                 setOutput(res.output);
@@ -97,7 +98,7 @@ const Home = () => {
       ) : null}
     </div>
   ) : (
-    "Loading..."
+    <Loading />
   );
 };
 export default Home;

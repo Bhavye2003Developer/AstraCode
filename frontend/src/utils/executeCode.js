@@ -18,18 +18,17 @@ const getCodeOutput = async (code, langId, containerId) => {
   }
 };
 
-const getContainerId = async () => {
+const getContainerId = () => {
   try {
-    const response = await fetch(SERVER_API, { method: "GET" });
-    const containerId = await response.json();
-
-    // const userInfo = JSON.parse(localStorage.getItem("userInfo"));
-    // userInfo.containerInfo = {
-    //   containerId: containerId.containerId,
-    //   expiry: new Date().toString(),
-    // };
-
-    return containerId;
+    return fetch(SERVER_API, { method: "GET" })
+      .then((res) => res.json())
+      .then((json) => {
+        return {
+          containerId: json.containerId,
+          expiry: new Date().toString(),
+          err: false,
+        };
+      });
   } catch (err) {
     return null;
   }
